@@ -38,6 +38,7 @@ func ActivityPostHandler(c fiber.Ctx) error {
 	}
 
 	ActivityInstance = newActivity
+	RestartCleanupTimer()
 
 	var actvityResponse = ActivityToGetActivityResponse(*ActivityInstance)
 	var response = models.ApiResponse{
@@ -51,6 +52,9 @@ func ActivityPostHandler(c fiber.Ctx) error {
 
 func ActivityDeleteHandler(c fiber.Ctx) error {
 	ActivityInstance = nil
+	if ActivityCleanupTimer != nil {
+		ActivityCleanupTimer.Stop()
+	}
 
 	var response = models.ApiResponse{
 		Message: "Activity deleted",
