@@ -13,9 +13,10 @@ func ActivityGetHandler(c fiber.Ctx) error {
 		return c.JSON(utils.EmptyResponse("Activity is empty", false))
 	}
 
+	var actvityResponse = ActivityToGetActivityResponse(*ActivityInstance)
 	var response = models.ApiResponse{
 		Message: "Activity found",
-		Data:    ActivityInstance,
+		Data:    actvityResponse,
 		Success: true,
 	}
 	c.Status(fiber.StatusOK)
@@ -38,9 +39,10 @@ func ActivityPostHandler(c fiber.Ctx) error {
 
 	ActivityInstance = newActivity
 
+	var actvityResponse = ActivityToGetActivityResponse(*ActivityInstance)
 	var response = models.ApiResponse{
-		Message: "Activity found",
-		Data:    ActivityInstance,
+		Message: "Activity created",
+		Data:    actvityResponse,
 		Success: true,
 	}
 	c.Status(fiber.StatusCreated)

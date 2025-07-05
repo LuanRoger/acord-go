@@ -28,3 +28,17 @@ func PostNewActivityToActivity(value models.PostNewActivity) (*models.Activity, 
 		DominantColor:  &dominantColor,
 	}, nil
 }
+
+func ActivityToGetActivityResponse(value models.Activity) *models.GetActivityResponse {
+	return &models.GetActivityResponse{
+		State:          value.State,
+		Details:        value.Details,
+		StartTimestamp: *value.StartTimestamp,
+		EndTimestamp:   *value.EndTimestamp,
+		LargeImageKey:  *value.LargeImageKey,
+		SmallImageKey:  *value.SmallImageKey,
+		LargeImageText: *value.LargeImageText,
+		SmallImageText: *value.SmallImageText,
+		DominantColor:  *value.DominantColor,
+	}
+}
