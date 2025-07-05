@@ -52,10 +52,8 @@ func ActivityPostHandler(c fiber.Ctx) error {
 func ActivityDeleteHandler(c fiber.Ctx) error {
 	ActivityInstance = nil
 
-	var actvityResponse = ActivityToGetActivityResponse(*ActivityInstance)
 	var response = models.ApiResponse{
-		Message: "Activity created",
-		Data:    actvityResponse,
+		Message: "Activity deleted",
 		Success: true,
 	}
 	c.Status(fiber.StatusOK)

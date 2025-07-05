@@ -17,9 +17,11 @@ func main() {
 	app.Use(logger.New())
 	app.Use(AuthToken)
 
-	app.Get("/activity", ActivityGetHandler)
-	app.Post("/activity", ActivityPostHandler)
-	app.Delete("/activity", ActivityDeleteHandler)
+	var activityGroup = app.Group("/activity")
+
+	activityGroup.Get("/", ActivityGetHandler)
+	activityGroup.Post("/", ActivityPostHandler)
+	activityGroup.Delete("/", ActivityDeleteHandler)
 
 	app.Listen(":3000")
 }
