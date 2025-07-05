@@ -24,13 +24,18 @@ func ActivityGetHandler(c fiber.Ctx) error {
 
 func ActivityPostHandler(c fiber.Ctx) error {
 	var bodyData = new(models.PostNewActivity)
-	err := c.Bind().Body(bodyData)
-	if err != nil {
+	bindError := c.Bind().Body(bodyData)
+	if bindError != nil {
 		c.Status(fiber.StatusBadRequest)
 		return c.JSON(utils.EmptyResponse("Invalid Body", false))
 	}
 
-	var newActivity = PostNewActivityToActivity(*bodyData)
+	var newActivity, adapterError = PostNewActivityToActivity(*bodyData)
+	if adapterError != nil {
+		c.Status(fiber.StatusInternalServerError)
+		return c.JSON(utils.EmptyResponse(adapterError.Error(), false))
+	}
+
 	ActivityInstance = newActivity
 
 	var response = models.ApiResponse{
