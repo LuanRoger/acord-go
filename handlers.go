@@ -48,3 +48,16 @@ func ActivityPostHandler(c fiber.Ctx) error {
 	c.Status(fiber.StatusCreated)
 	return c.JSON(response)
 }
+
+func ActivityDeleteHandler(c fiber.Ctx) error {
+	ActivityInstance = nil
+
+	var actvityResponse = ActivityToGetActivityResponse(*ActivityInstance)
+	var response = models.ApiResponse{
+		Message: "Activity created",
+		Data:    actvityResponse,
+		Success: true,
+	}
+	c.Status(fiber.StatusOK)
+	return c.JSON(response)
+}

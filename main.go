@@ -19,6 +19,7 @@ func main() {
 
 	app.Get("/activity", ActivityGetHandler)
 	app.Post("/activity", ActivityPostHandler)
+	app.Delete("/activity", ActivityDeleteHandler)
 
 	app.Listen(":3000")
 }
