@@ -2,7 +2,10 @@ module acord-go
 
 go 1.24.4
 
-require github.com/gofiber/fiber/v3 v3.0.0-beta.4
+require (
+	github.com/cenkalti/dominantcolor v1.0.3
+	github.com/gofiber/fiber/v3 v3.0.0-beta.4
+)
 
 require (
 	github.com/andybalholm/brotli v1.2.0 // indirect
@@ -19,6 +22,7 @@ require (
 	github.com/valyala/fasthttp v1.63.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	golang.org/x/crypto v0.39.0 // indirect
+	golang.org/x/image v0.18.0 // indirect
 	golang.org/x/net v0.41.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
 	golang.org/x/text v0.26.0 // indirect
