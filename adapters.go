@@ -9,7 +9,7 @@ import (
 )
 
 func PostNewActivityToActivity(value models.PostNewActivity) (*models.Activity, error) {
-	var startTimestamp, endTimestamp = time.Unix(value.StartTimestamp, 0), time.Unix(value.EndTimestamp, 0)
+	var startTimestamp, endTimestamp = time.Unix(value.StartTimestamp/1000, 0), time.Unix(value.EndTimestamp/1000, 0)
 	var image, err = utils.DownloadRemoteImage(value.SmallImageKey)
 	if err != nil {
 		return nil, err
